@@ -11,9 +11,8 @@ namespace AnimPathRenamer
         bool _active = true;
         string _selectPath = "";
         int _selectID = 0;
-        GameObject _Animator;
+        GameObject _animator;
         AnimationClip[] _clips;
-
 
         [MenuItem("Window/AnimPathRenamer")]
         static void ShowWindow()
@@ -26,10 +25,10 @@ namespace AnimPathRenamer
         {
             _active = EditorGUILayout.Toggle("Active", _active);
             EditorGUI.BeginChangeCheck();
-            _Animator = EditorGUILayout.ObjectField("Animator", _Animator, typeof(GameObject), true) as GameObject;
+            _animator = EditorGUILayout.ObjectField("Animator", _animator, typeof(GameObject), true) as GameObject;
             if (EditorGUI.EndChangeCheck())
             {
-                _clips = AnimationUtility.GetAnimationClips(_Animator);
+                _clips = AnimationUtility.GetAnimationClips(_animator);
             }
 
             EditorGUILayout.Space();
@@ -50,14 +49,14 @@ namespace AnimPathRenamer
         void Update()
         {
             if (!_active) return;
-            if (_Animator == null) return;
+            if (_animator == null) return;
             var obj = EditorUtility.InstanceIDToObject(_selectID);
 
             //前情報が足りない場合は取得だけして戻る
             if (obj == null || _selectPath == "")
             {
                 if (Selection.activeTransform == null) return;
-                var path = AnimationUtility.CalculateTransformPath(Selection.activeTransform, _Animator.transform);
+                var path = AnimationUtility.CalculateTransformPath(Selection.activeTransform, _animator.transform);
                 if (path == "") return;
                 _selectID = Selection.activeTransform.GetInstanceID();
                 _selectPath = path;
@@ -66,7 +65,7 @@ namespace AnimPathRenamer
             }
 
             //保持してるIDのPathが変わったかチェック
-            var selectPath = AnimationUtility.CalculateTransformPath((Transform)obj, _Animator.transform);
+            var selectPath = AnimationUtility.CalculateTransformPath((Transform)obj, _animator.transform);
             if (selectPath != _selectPath)
             {
                 //変更後のpathが重複してないかチェック
@@ -184,7 +183,7 @@ namespace AnimPathRenamer
             if (selectID != _selectID)
             {
                 _selectID = selectID;
-                _selectPath = AnimationUtility.CalculateTransformPath(Selection.activeTransform, _Animator.transform);
+                _selectPath = AnimationUtility.CalculateTransformPath(Selection.activeTransform, _animator.transform);
                 Repaint();
                 return;
             }
