@@ -12,3 +12,6 @@ Animatorコンポーネントを付けてるオブジェクトを設定
 Activeにチェックが付いている間は自動でPath修正されるようになります。
 
 ![image](https://github.com/user-attachments/assets/ddf3a1f1-f34f-41ae-bba4-2f010e4453f1)
+
+## unitypackage
+[AnimPathRenamer.zip](https://github.com/user-attachments/files/16675489/AnimPathRenamer.zip)
