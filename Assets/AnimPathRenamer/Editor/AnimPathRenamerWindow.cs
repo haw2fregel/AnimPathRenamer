@@ -15,10 +15,10 @@ namespace AnimPathRenamer
         AnimationClip[] _clips;
 
 
-        [MenuItem("Window/AnimPathMonitor")]
+        [MenuItem("Window/AnimPathRenamer")]
         static void ShowWindow()
         {
-            var window = (AnimPathRenamerWindow)EditorWindow.GetWindow(typeof(AnimPathRenamerWindow), true, "AnimPathMonitor");
+            var window = (AnimPathRenamerWindow)EditorWindow.GetWindow(typeof(AnimPathRenamerWindow), true, "AnimPathRenamer");
             window.ShowUtility();
         }
 
